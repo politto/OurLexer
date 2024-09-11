@@ -11,6 +11,20 @@ Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
 Identifier = id+\d*
 
+
+
+LineTerminator = \r|\n|\r\n
+InputCharacter = [^\r\n]
+
+
+/* comments */
+Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
+TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+DocumentationComment = "/**" {CommentContent} "*"+ "/"
+CommentContent       = ( [^*] | \*+ [^/*] )*
+
+
 %{
     Set<String> IdentifierSet = new HashSet<>();
 %}
@@ -26,3 +40,6 @@ Identifier = id+\d*
     IdentifierSet.add(yytext());
 }
     
+{Comment} { /* ignore */ 
+}
+

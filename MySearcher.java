@@ -66,17 +66,18 @@ class MySearcher {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\60\0\12\1\52\0\1\2\4\0\1\3\u01f6\0\12\1"+
-    "\206\0\12\1\306\0\12\1\234\0\12\1\166\0\12\1"+
-    "\140\0\12\1\166\0\12\1\106\0\12\1\u0116\0\12\1"+
-    "\106\0\12\1\u0146\0\12\1\46\0\12\1\u012c\0\12\1"+
-    "\200\0\12\1\246\0\12\1\6\0\12\1\266\0\12\1"+
-    "\126\0\12\1\206\0\12\1\6\0\12\1\u0176\0\12\1"+
-    "\46\0\12\1\306\0\12\1\26\0\12\1\126\0\12\1"+
-    "\u0196\0\12\1\246\0\12\1\206\0\12\1\u012c\0\12\1"+
-    "\200\0\12\1\74\0\12\1\220\0\12\1\166\0\12\1"+
-    "\146\0\12\1\206\0\12\1\106\0\12\1\266\0\12\1"+
-    "\u0164\0\62\1\100\0\12\1\266\0";
+    "\12\0\1\1\2\0\1\2\34\0\1\3\4\0\1\4"+
+    "\12\5\52\0\1\6\4\0\1\7\u01f6\0\12\5\206\0"+
+    "\12\5\306\0\12\5\234\0\12\5\166\0\12\5\140\0"+
+    "\12\5\166\0\12\5\106\0\12\5\u0116\0\12\5\106\0"+
+    "\12\5\u0146\0\12\5\46\0\12\5\u012c\0\12\5\200\0"+
+    "\12\5\246\0\12\5\6\0\12\5\266\0\12\5\126\0"+
+    "\12\5\206\0\12\5\6\0\12\5\u0176\0\12\5\46\0"+
+    "\12\5\306\0\12\5\26\0\12\5\126\0\12\5\u0196\0"+
+    "\12\5\246\0\12\5\206\0\12\5\u012c\0\12\5\200\0"+
+    "\12\5\74\0\12\5\220\0\12\5\166\0\12\5\146\0"+
+    "\12\5\206\0\12\5\106\0\12\5\266\0\12\5\u0164\0"+
+    "\62\5\100\0\12\5\266\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[6912];
@@ -103,10 +104,11 @@ class MySearcher {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\2\1\2\2";
+    "\1\0\3\1\1\0\1\2\1\3\2\0\2\2\1\3"+
+    "\1\0\1\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[5];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -131,10 +133,11 @@ class MySearcher {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\4\0\10\0\14\0\20";
+    "\0\0\0\10\0\20\0\30\0\40\0\50\0\60\0\70"+
+    "\0\100\0\10\0\110\0\120\0\130\0\70";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[5];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -157,11 +160,14 @@ class MySearcher {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\3\2\1\3\6\0\1\4\2\0\1\5\1\4\2\0"+
-    "\1\5\2\0";
+    "\4\2\1\3\2\2\1\4\13\0\1\5\1\6\11\0"+
+    "\1\7\1\0\3\10\1\11\4\10\1\6\1\12\1\13"+
+    "\5\6\5\0\1\14\1\7\1\0\3\10\1\15\7\10"+
+    "\1\15\1\16\3\10\1\0\1\12\13\0\1\14\2\0"+
+    "\3\10\1\15\1\12\3\10";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[20];
+    int [] result = new int[96];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -204,10 +210,11 @@ class MySearcher {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\3\1";
+    "\1\0\1\11\2\1\1\0\2\1\2\0\1\11\2\1"+
+    "\1\0\1\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[5];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -702,15 +709,20 @@ class MySearcher {
             { System.out.print(yytext());
             }
           // fall through
-          case 3: break;
+          case 4: break;
           case 2:
+            { /* ignore */
+            }
+          // fall through
+          case 5: break;
+          case 3:
             { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
             }
           // fall through
-          case 4: break;
+          case 6: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

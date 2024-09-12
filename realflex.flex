@@ -10,6 +10,7 @@ import java.util.*;
 Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
 Identifier = id+\d*
+Integer = \d+
 
 %{
     Set<String> IdentifierSet = new HashSet<>();
@@ -26,3 +27,6 @@ Identifier = id+\d*
     IdentifierSet.add(yytext());
 }
     
+{Integer} {
+    System.out.printf("integer: %s", yytext());
+}

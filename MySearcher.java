@@ -103,10 +103,10 @@ class MySearcher {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\2\1\2\2";
+    "\1\0\1\1\1\2\1\1\2\3";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -131,10 +131,10 @@ class MySearcher {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\4\0\10\0\14\0\20";
+    "\0\0\0\4\0\10\0\14\0\20\0\24";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -157,11 +157,11 @@ class MySearcher {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\3\2\1\3\6\0\1\4\2\0\1\5\1\4\2\0"+
-    "\1\5\2\0";
+    "\1\2\1\3\1\2\1\4\5\0\1\3\4\0\1\5"+
+    "\2\0\1\6\1\5\2\0\1\6\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[20];
+    int [] result = new int[24];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -204,10 +204,10 @@ class MySearcher {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\3\1";
+    "\1\0\1\11\4\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -702,15 +702,20 @@ class MySearcher {
             { System.out.print(yytext());
             }
           // fall through
-          case 3: break;
+          case 4: break;
           case 2:
+            { System.out.printf("integer: %s", yytext());
+            }
+          // fall through
+          case 5: break;
+          case 3:
             { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
             }
           // fall through
-          case 4: break;
+          case 6: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

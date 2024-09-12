@@ -1,6 +1,4 @@
-import java.util.*;
 %%
-
 
 %class MySearcher
 %standalone
@@ -11,6 +9,12 @@ Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
 Identifier = id+\d*
 Integer = \d+
+Operator = [+\-*/=<>]
+Equal = ==
+GreaterThanOrEqual = >=
+LessThanOrEqual = <=
+Increment = \+\+
+Decrement = \-\-
 
 
 
@@ -57,3 +61,14 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 {Integer} {
     System.out.printf("integer: %s", yytext());
 }
+
+
+
+%%
+
+{Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
+    System.out.printf("operator: %s\n", yytext());
+}
+
+\n {}
+. {}

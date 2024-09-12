@@ -10,6 +10,7 @@ import java.util.*;
 Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
 Identifier = id+\d*
+Integer = \d+
 
 
 
@@ -53,3 +54,6 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 {Comment} { /* ignore */ 
 }
 
+{Integer} {
+    System.out.printf("integer: %s", yytext());
+}

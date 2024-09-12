@@ -106,13 +106,13 @@ class MySearcher {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\12\1\1\0\1\2\1\3\2\0\1\4\1\5"+
-    "\7\0\2\2\2\0\1\4\6\0\1\2\1\6\4\0"+
-    "\1\7\1\10\1\0\1\11\2\0\1\12\1\13\3\0"+
-    "\1\14\1\15";
+    "\1\0\2\1\1\2\10\1\1\0\1\3\1\4\2\0"+
+    "\1\5\1\6\7\0\2\3\2\0\1\5\6\0\1\3"+
+    "\1\7\4\0\1\10\1\11\1\0\1\12\2\0\1\13"+
+    "\1\14\3\0\1\15\1\16";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[55];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -138,15 +138,15 @@ class MySearcher {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\24\0\50\0\74\0\120\0\144\0\170\0\214"+
-    "\0\240\0\264\0\310\0\334\0\360\0\24\0\u0104\0\u0118"+
-    "\0\u012c\0\24\0\u0140\0\u0154\0\u0168\0\u017c\0\u0190\0\u01a4"+
-    "\0\u01b8\0\24\0\u01cc\0\u01e0\0\u01f4\0\u0208\0\u021c\0\u0230"+
-    "\0\u0244\0\u0258\0\u026c\0\u0280\0\u01a4\0\24\0\u0294\0\u02a8"+
-    "\0\u02bc\0\u02d0\0\24\0\24\0\u02e4\0\24\0\u02f8\0\u030c"+
-    "\0\24\0\24\0\u0320\0\u0334\0\u0348\0\24\0\24";
+    "\0\240\0\264\0\310\0\334\0\360\0\u0104\0\24\0\u0118"+
+    "\0\u012c\0\u0140\0\24\0\u0154\0\u0168\0\u017c\0\u0190\0\u01a4"+
+    "\0\u01b8\0\u01cc\0\24\0\u01e0\0\u01f4\0\u0208\0\u021c\0\u0230"+
+    "\0\u0244\0\u0258\0\u026c\0\u0280\0\u0294\0\u01b8\0\24\0\u02a8"+
+    "\0\u02bc\0\u02d0\0\u02e4\0\24\0\24\0\u02f8\0\24\0\u030c"+
+    "\0\u0320\0\24\0\24\0\u0334\0\u0348\0\u035c\0\24\0\24";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[55];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -169,24 +169,24 @@ class MySearcher {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\4\2\1\3\2\2\1\4\1\5\2\2\1\6\1\2"+
-    "\1\7\1\2\1\10\1\11\1\2\1\12\1\13\27\0"+
-    "\1\14\1\15\35\0\1\16\21\0\1\17\1\20\15\0"+
-    "\1\21\1\0\1\22\22\0\1\23\33\0\1\24\13\0"+
-    "\1\25\25\0\1\26\23\0\1\27\11\0\3\30\1\31"+
-    "\20\30\1\15\1\32\1\33\21\15\21\0\1\34\11\0"+
-    "\1\35\21\0\1\36\1\0\1\21\37\0\1\37\13\0"+
-    "\1\40\16\0\1\41\25\0\1\42\26\0\1\43\10\0"+
-    "\3\30\1\44\23\30\1\44\1\45\17\30\1\0\1\32"+
-    "\32\0\1\46\26\0\1\47\7\0\1\50\5\0\1\36"+
-    "\32\0\1\51\24\0\1\52\15\0\1\53\31\0\1\54"+
-    "\22\0\1\55\7\0\3\30\1\44\1\32\17\30\11\0"+
-    "\1\56\24\0\1\57\24\0\1\60\32\0\1\61\11\0"+
-    "\1\62\26\0\1\63\25\0\1\64\22\0\1\65\17\0"+
-    "\1\66\23\0\1\67\13\0";
+    "\4\2\1\3\1\4\1\2\1\5\1\6\2\2\1\7"+
+    "\1\2\1\10\1\2\1\11\1\12\1\2\1\13\1\14"+
+    "\27\0\1\15\1\16\24\0\1\4\34\0\1\17\21\0"+
+    "\1\20\1\21\15\0\1\22\1\0\1\23\22\0\1\24"+
+    "\33\0\1\25\13\0\1\26\25\0\1\27\23\0\1\30"+
+    "\11\0\3\31\1\32\20\31\1\16\1\33\1\34\21\16"+
+    "\21\0\1\35\11\0\1\36\21\0\1\37\1\0\1\22"+
+    "\37\0\1\40\13\0\1\41\16\0\1\42\25\0\1\43"+
+    "\26\0\1\44\10\0\3\31\1\45\23\31\1\45\1\46"+
+    "\17\31\1\0\1\33\32\0\1\47\26\0\1\50\7\0"+
+    "\1\51\5\0\1\37\32\0\1\52\24\0\1\53\15\0"+
+    "\1\54\31\0\1\55\22\0\1\56\7\0\3\31\1\45"+
+    "\1\33\17\31\11\0\1\57\24\0\1\60\24\0\1\61"+
+    "\32\0\1\62\11\0\1\63\26\0\1\64\25\0\1\65"+
+    "\22\0\1\66\17\0\1\67\23\0\1\70\13\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[860];
+    int [] result = new int[880];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -229,13 +229,13 @@ class MySearcher {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\11\1\1\0\1\1\1\11\2\0\1\1"+
+    "\1\0\1\11\12\1\1\0\1\1\1\11\2\0\1\1"+
     "\1\11\7\0\1\11\1\1\2\0\1\1\6\0\1\1"+
     "\1\11\4\0\2\11\1\0\1\11\2\0\2\11\3\0"+
     "\2\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[55];
+    int [] result = new int[56];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -730,70 +730,75 @@ class MySearcher {
             { System.out.print(yytext());
             }
           // fall through
-          case 14: break;
-          case 2:
-            { /* ignore */
-            }
-          // fall through
           case 15: break;
-          case 3:
-            { System.out.printf("keyword: do");
+          case 2:
+            { System.out.printf("integer: %s", yytext());
             }
           // fall through
           case 16: break;
+          case 3:
+            { /* ignore */
+            }
+          // fall through
+          case 17: break;
           case 4:
+            { System.out.printf("keyword: do");
+            }
+          // fall through
+          case 18: break;
+          case 5:
             { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
             }
           // fall through
-          case 17: break;
-          case 5:
+          case 19: break;
+          case 6:
             { System.out.printf("keyword: if");
             }
           // fall through
-          case 18: break;
-          case 6:
+          case 20: break;
+          case 7:
             { System.out.printf("keyword: else");
             }
           // fall through
-          case 19: break;
-          case 7:
+          case 21: break;
+          case 8:
             { System.out.printf("keyword: read");
             }
           // fall through
-          case 20: break;
-          case 8:
+          case 22: break;
+          case 9:
             { System.out.printf("keyword: then");
             }
           // fall through
-          case 21: break;
-          case 9:
+          case 23: break;
+          case 10:
             { System.out.printf("keyword: endif");
             }
           // fall through
-          case 22: break;
-          case 10:
+          case 24: break;
+          case 11:
             { System.out.printf("keyword: print");
             }
           // fall through
-          case 23: break;
-          case 11:
+          case 25: break;
+          case 12:
             { System.out.printf("keyword: while");
             }
           // fall through
-          case 24: break;
-          case 12:
+          case 26: break;
+          case 13:
             { System.out.printf("keyword: newline");
             }
           // fall through
-          case 25: break;
-          case 13:
+          case 27: break;
+          case 14:
             { System.out.printf("keyword: endwhile");
             }
           // fall through
-          case 26: break;
+          case 28: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

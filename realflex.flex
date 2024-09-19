@@ -4,26 +4,23 @@
 %standalone
 %line
 %column
+/*Macro def here options too*/
+Numbers = \d+\.?\d*
+Letters = [a-zA-Z]
+Identifier = id+\d*
 
-Operator = [+\-*/=<>]
-Equal = ==
-GreaterThanOrEqual = >=
-LessThanOrEqual = <=
-Increment = \+\+
-Decrement = \-\-
+%{
+    Set<String> IdentifierSet = new HashSet<>();
+%}
 
-COMMENT_SINGLE = "//".*
-COMMENT_MULTI = "/*"([^*]|\*+[^*/])*\*+"/"
 
 %%
 
-{COMMENT_SINGLE} {}
 
-{COMMENT_MULTI} {}
-
-{Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
-    System.out.printf("operator: %s\n", yytext());
+{Identifier} {
+    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
+    else System.out.printf("identifier \"%s\" already in symbol table", yytext());
+    
+    IdentifierSet.add(yytext());
 }
-
-\n {}
-. {}
+    

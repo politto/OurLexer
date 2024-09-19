@@ -319,7 +319,7 @@ class MySearcher {
   private boolean zzEOFDone;
 
   /* user code: */
-    Set<String> IdentifierSet = new HashSet<>();
+    java.util.Set<String> IdentifierSet = new java.util.HashSet<>();
 
 
   /**

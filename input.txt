@@ -8,3 +8,6 @@ id2
 id1
 "Hello world"
 /*comment*/
+(
+)
+;

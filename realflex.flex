@@ -18,6 +18,10 @@ Identifier = id+\d*
 
 %%
 
+"(" { System.out.println("Left Parenthesis: ("); }
+")" { System.out.println("Right Parenthesis: )"); }
+";" { System.out.println("Semicolon: ;"); }
+
 
 {Identifier} {
     if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());

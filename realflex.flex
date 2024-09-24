@@ -1,28 +1,26 @@
 import java.util.*;
 %%
 
-
 %class MySearcher
 %standalone
 %line
 %column
-/*Macro def here options too*/
-Numbers = \d+\.?\d*
-Letters = [a-zA-Z]
-Identifier = id+\d*
+%unicode
+%public
 
-%{
-    Set<String> IdentifierSet = new HashSet<>();
-%}
-
+/* Macros */
+DOUBLE_QUOTE = \"|\u201C|\u201D
+STRING_CHAR = [^"\n]
+STRING      = {DOUBLE_QUOTE}{STRING_CHAR}*{DOUBLE_QUOTE}
 
 %%
 
-
-{Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
-    else System.out.printf("identifier \"%s\" already in symbol table", yytext());
-    
-    IdentifierSet.add(yytext());
+{STRING} {
+    if (yytext().contains("!")) {
+        System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
+    } else {
+        System.out.println("string: " + yytext());
+    }
 }
-    
+
+. { /* Ignore any other characters */ }

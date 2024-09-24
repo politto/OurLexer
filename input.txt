@@ -7,4 +7,5 @@ id1
 id2
 id1
 "Hello world"
+"Hello world!"
 /*comment*/

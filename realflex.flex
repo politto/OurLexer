@@ -10,7 +10,7 @@ import java.util.*;
 
 /* Macros */
 DOUBLE_QUOTE = \"|\u201C|\u201D
-STRING_CHAR = [^"\n]
+STRING_CHAR = [^\"\\n]
 STRING      = {DOUBLE_QUOTE}{STRING_CHAR}*{DOUBLE_QUOTE}
 
 %%

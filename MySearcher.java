@@ -7,6 +7,7 @@ import java.util.*;
 @SuppressWarnings("fallthrough")
 class MySearcher {
 
+  
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
 
@@ -697,6 +698,12 @@ class MySearcher {
         return YYEOF;
       }
       else {
+        // ตรวจสอบว่ามีอัศเจรีย์ในข้อความที่ตรวจจับได้หรือไม่
+        if (yytext().contains("!")) {
+          System.out.println("Error: Exclamation mark ('!') found in identifier: " + yytext());
+          return -1; // แสดง error แล้วหยุดการทำงาน
+        }
+
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { System.out.print(yytext());
@@ -704,10 +711,12 @@ class MySearcher {
           // fall through
           case 3: break;
           case 2:
-            { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
-    else System.out.printf("identifier \"%s\" already in symbol table", yytext());
+            { if (!IdentifierSet.contains(yytext())) 
+                System.out.printf("new identifier: %s\n", yytext());
+              else 
+                System.out.printf("identifier \"%s\" already in symbol table\n", yytext());
     
-    IdentifierSet.add(yytext());
+              IdentifierSet.add(yytext());
             }
           // fall through
           case 4: break;

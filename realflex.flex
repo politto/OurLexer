@@ -1,3 +1,4 @@
+import java.util.*;
 %%
 
 %class MySearcher
@@ -7,7 +8,8 @@
 /*Macro def here options too*/
 Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
-Identifier = id+\d*
+Identifier = [A-Za-z][A-Za-z0-9]*
+
 Integer = \d+
 Operator = [+\-*/=<>]
 Equal = ==
@@ -29,7 +31,7 @@ EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 
-
+/* insert java code*/
 %{
     Set<String> IdentifierSet = new HashSet<>();
 %}
@@ -70,5 +72,3 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
     System.out.printf("operator: %s\n", yytext());
 }
 
-\n {}
-. {}

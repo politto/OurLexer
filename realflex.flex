@@ -18,6 +18,9 @@ LessThanOrEqual = <=
 Increment = \+\+
 Decrement = \-\-
 
+COMMENT_SINGLE = "//".*
+COMMENT_MULTI = "/*"([^*]|\*+[^*/])*\*+"/"
+
 
 
 LineTerminator = \r|\n|\r\n
@@ -68,7 +71,12 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 
 %%
 
+{COMMENT_SINGLE} {}
+{COMMENT_MULTI} {}
+
 {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
     System.out.printf("operator: %s\n", yytext());
 }
 
+\n {}
+. {}

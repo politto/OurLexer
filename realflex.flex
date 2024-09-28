@@ -18,9 +18,6 @@ LessThanOrEqual = <=
 Increment = \+\+
 Decrement = \-\-
 
-COMMENT_SINGLE = "//".*
-COMMENT_MULTI = "/*"([^*]|\*+[^*/])*\*+"/"
-
 
 
 LineTerminator = \r|\n|\r\n
@@ -54,7 +51,7 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 
 
 {Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
+    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
@@ -63,20 +60,14 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 {Comment} { /* ignore */ 
 }
 
-{Integer} {
-    System.out.printf("integer: %s", yytext());
-}
-
-
-
-%%
-
-{COMMENT_SINGLE} {}
-{COMMENT_MULTI} {}
-
 {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
     System.out.printf("operator: %s\n", yytext());
 }
 
+{Integer} {
+    System.out.printf("integer: %s\n", yytext());
+}
+
 \n {}
 . {}
+

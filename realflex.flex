@@ -5,22 +5,18 @@
 %line
 %column
 
-Operator = [+\-*/=<>]
+Operator = [+\-*/=<>%]
+NotEqual = "!="
 Equal = ==
 GreaterThanOrEqual = >=
 LessThanOrEqual = <=
 Increment = \+\+
 Decrement = \-\-
-
-COMMENT_SINGLE = "//".*
-COMMENT_MULTI = "/*"([^*]|\*+[^*/])*\*+"/"
+AND = "&&"
+OR = "\|\|"
 
 %%
-
-{COMMENT_SINGLE} {}
-{COMMENT_MULTI} {}
-
-{Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
+{NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
     System.out.printf("operator: %s\n", yytext());
 }
 

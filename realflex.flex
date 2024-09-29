@@ -10,7 +10,7 @@ import java.util.*;
 Numbers = \d+\.?\d*
 Letters = [a-zA-Z]
 Identifier = id+\d*
-Integer = \d+
+Integer = \d+\.?\d*|\d+
 
 %{
     Set<String> IdentifierSet = new HashSet<>();
@@ -28,5 +28,10 @@ Integer = \d+
 }
     
 {Integer} {
-    System.out.printf("integer: %s", yytext());
+    if (yytext().matches("^\\d+$")) {
+        System.out.printf("integer: %s", yytext());
+    } else {
+        System.out.println("Error: Non-integer value found.");
+        System.exit(0);
+    }
 }

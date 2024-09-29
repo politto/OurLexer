@@ -66,17 +66,17 @@ class MySearcher {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\60\0\12\1\52\0\1\2\4\0\1\3\u01f6\0\12\1"+
-    "\206\0\12\1\306\0\12\1\234\0\12\1\166\0\12\1"+
-    "\140\0\12\1\166\0\12\1\106\0\12\1\u0116\0\12\1"+
-    "\106\0\12\1\u0146\0\12\1\46\0\12\1\u012c\0\12\1"+
-    "\200\0\12\1\246\0\12\1\6\0\12\1\266\0\12\1"+
-    "\126\0\12\1\206\0\12\1\6\0\12\1\u0176\0\12\1"+
-    "\46\0\12\1\306\0\12\1\26\0\12\1\126\0\12\1"+
-    "\u0196\0\12\1\246\0\12\1\206\0\12\1\u012c\0\12\1"+
-    "\200\0\12\1\74\0\12\1\220\0\12\1\166\0\12\1"+
-    "\146\0\12\1\206\0\12\1\106\0\12\1\266\0\12\1"+
-    "\u0164\0\62\1\100\0\12\1\266\0";
+    "\56\0\1\1\1\0\12\2\52\0\1\3\4\0\1\4"+
+    "\u01f6\0\12\2\206\0\12\2\306\0\12\2\234\0\12\2"+
+    "\166\0\12\2\140\0\12\2\166\0\12\2\106\0\12\2"+
+    "\u0116\0\12\2\106\0\12\2\u0146\0\12\2\46\0\12\2"+
+    "\u012c\0\12\2\200\0\12\2\246\0\12\2\6\0\12\2"+
+    "\266\0\12\2\126\0\12\2\206\0\12\2\6\0\12\2"+
+    "\u0176\0\12\2\46\0\12\2\306\0\12\2\26\0\12\2"+
+    "\126\0\12\2\u0196\0\12\2\246\0\12\2\206\0\12\2"+
+    "\u012c\0\12\2\200\0\12\2\74\0\12\2\220\0\12\2"+
+    "\166\0\12\2\146\0\12\2\206\0\12\2\106\0\12\2"+
+    "\266\0\12\2\u0164\0\62\2\100\0\12\2\266\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[6912];
@@ -103,10 +103,10 @@ class MySearcher {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\1\2\3";
+    "\1\0\1\1\1\2\1\1\1\2\2\3";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[6];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -131,10 +131,10 @@ class MySearcher {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\4\0\10\0\14\0\20\0\24";
+    "\0\0\0\5\0\12\0\17\0\24\0\31\0\36";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[6];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -157,11 +157,12 @@ class MySearcher {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\2\1\4\5\0\1\3\4\0\1\5"+
-    "\2\0\1\6\1\5\2\0\1\6\2\0";
+    "\2\2\1\3\1\2\1\4\6\0\1\5\1\3\5\0"+
+    "\1\6\3\0\1\5\4\0\1\7\1\6\3\0\1\7"+
+    "\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[24];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -204,10 +205,10 @@ class MySearcher {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\4\1";
+    "\1\0\1\11\5\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[6];
+    int [] result = new int[7];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -704,7 +705,12 @@ class MySearcher {
           // fall through
           case 4: break;
           case 2:
-            { System.out.printf("integer: %s", yytext());
+            { if (yytext().matches("^\\d+$")) {
+        System.out.printf("integer: %s", yytext());
+    } else {
+        System.out.println("Error: Non-integer value found.");
+        System.exit(0);
+    }
             }
           // fall through
           case 5: break;

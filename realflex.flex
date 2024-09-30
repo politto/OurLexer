@@ -20,6 +20,7 @@ Increment = \+\+
 Decrement = \-\-
 AND = "&&"
 OR = "\|\|"
+Others = [^A-Za-z+\-*/%]+
 
 
 
@@ -98,4 +99,4 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 
 // ละเว้นอักขระอื่น ๆ
-. { throw new RuntimeException("Program terminated due to invalid character."); }
+{Others} { throw new RuntimeException("Program terminated due to invalid character."); }

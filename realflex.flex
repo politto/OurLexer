@@ -8,18 +8,18 @@ import java.util.*;
 %column
 /*Macro def here options too*/
 Numbers = \d+\.?\d*
-Letters = [a-zA-Z]
-Identifier = id+\d*
+Letters = \"[A-Za-z]\"
+Identifier = [A-Za-z]+[A-Za-z0-9]?
 Integer = \d+
-Operator = [+\-*/=<>]
+Operator = [+\-*/=<>%]
+NotEqual = "!="
 Equal = ==
 GreaterThanOrEqual = >=
 LessThanOrEqual = <=
 Increment = \+\+
 Decrement = \-\-
-
-COMMENT_SINGLE = "//".*
-COMMENT_MULTI = "/*"([^*]|\*+[^*/])*\*+"/"
+AND = "&&"
+OR = "\|\|"
 
 
 
@@ -66,11 +66,7 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 {Integer} {
     System.out.printf("integer: %s", yytext());
 }
-
-{COMMENT_SINGLE} {}
-{COMMENT_MULTI} {}
-
-{Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} {
+{NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
     System.out.printf("operator: %s\n", yytext());
 }
 

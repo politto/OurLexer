@@ -59,6 +59,7 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 {Identifier} {
     if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
+    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
@@ -72,6 +73,10 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 }
 {NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
     System.out.printf("operator: %s\n", yytext());
+}
+
+{Integer} {
+    System.out.printf("integer: %s\n", yytext());
 }
 
 {Letters} {

@@ -28,9 +28,9 @@ InputCharacter = [^\r\n]
 
 
 /* comments */
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+Comment = {SingleLineComment} | {MultiLineComment} | {DocumentationComment}
+SingleLineComment     = "//" {InputCharacter}* {LineTerminator}?
+MultiLineComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 

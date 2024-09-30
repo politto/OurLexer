@@ -787,7 +787,7 @@ public class MySearcher {
           // fall through
           case 22: break;
           case 5:
-            { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
+            { if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());

@@ -58,7 +58,7 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 
 {Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
+    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());
@@ -95,5 +95,7 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
     throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
 }
 
+
+
 // ละเว้นอักขระอื่น ๆ
-. { /* Ignore any other characters */ }
+. { throw new RuntimeException("Program terminated due to invalid character."); }

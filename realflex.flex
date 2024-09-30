@@ -59,7 +59,6 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 {Identifier} {
     if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table", yytext());
     
     IdentifierSet.add(yytext());

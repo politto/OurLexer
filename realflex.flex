@@ -8,8 +8,8 @@ import java.util.*;
 %column
 /*Macro def here options too*/
 Numbers = \d+\.?\d*
-Letters = \"[^\"\\n]*\"
-Identifier = [A-Za-z]+[A-Za-z0-9]?
+Letters = \"[^\"\\\n]*\"
+Identifier = [A-Za-z][A-Za-z0-9]*
 Integer = \d+
 Operator = [+\-*/=<>%]
 NotEqual = "!="
@@ -20,7 +20,7 @@ Increment = \+\+
 Decrement = \-\-
 AND = "&&"
 OR = "\|\|"
-Others = [^A-Za-z+\-*/%]+
+Others = [^A-Za-z0-9+\-\*/%\"]+
 
 
 
@@ -59,13 +59,16 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 
 {Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
-    else System.out.printf("identifier \"%s\" already in symbol table", yytext());
+    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
+    else System.out.printf("identifier \"%s\" already in symbol table\n", yytext());
     
     IdentifierSet.add(yytext());
 }
     
 {Comment} { /* ignore */ 
+}
+
+{LineTerminator} { /* ignore */ 
 }
 
 {Integer} {

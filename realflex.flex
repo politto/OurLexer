@@ -20,7 +20,8 @@ Increment = \+\+
 Decrement = \-\-
 AND = "&&"
 OR = "\|\|"
-Others = [^A-Za-z0-9+\-\*/%\"]+
+Others = [^A-Za-z0-9+\-\*/%\" ]+
+
 
 
 
@@ -29,7 +30,7 @@ InputCharacter = [^\r\n]
 
 
 /* comments */
-Comment = {SingleLineComment} | {MultiLineComment} | {DocumentationComment}
+Comment = {SingleLineComment} | {MultiLineComment} | {DocumentationComment} | [ ]
 SingleLineComment     = "//" {InputCharacter}* {LineTerminator}?
 MultiLineComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 DocumentationComment = "/**" {CommentContent} "*"+ "/"

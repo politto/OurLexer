@@ -693,20 +693,17 @@ public class MySearcher {
           // fall through
           case 6: break;
           case 3:
-            { // แสดงข้อความข้อผิดพลาดและหยุดการทำงานเมื่อพบข้อความที่ไม่ได้อยู่ในเครื่องหมายคำพูด
-    System.out.println("Error: String is not enclosed in double quotes: " + yytext());
-    throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+            { try {
+        System.out.println("Error: String is not enclosed in double quotes: " + yytext());
+        throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+    } catch (RuntimeException e) {
+        System.err.println(e.getMessage());
+    }
             }
           // fall through
           case 7: break;
           case 4:
-            { // ตรวจสอบว่ามีเครื่องหมาย ! ในสตริงหรือไม่
-    if (yytext().contains("!")) {
-        System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
-        throw new RuntimeException("Program terminated due to exclamation mark in string.");
-    } else {
-        System.out.println("string: " + yytext());
-    }
+            { System.out.println("Valid string: " + yytext());
             }
           // fall through
           case 8: break;

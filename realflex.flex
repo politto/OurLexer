@@ -82,6 +82,7 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 {Integer} {
     System.out.printf("integer: %s\n", yytext());
+}
 
 // จับการเปิดและปิดเครื่องหมายคำพูดคู่
 {DOUBLE_QUOTE} {
@@ -133,6 +134,3 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 // ละเว้นอักขระอื่น ๆ
 {Others} { throw new RuntimeException("Program terminated due to invalid character."); }
-
-    System.exit(0);  // หยุดการทำงานเมื่อสิ้นสุดการประมวลผลไฟล์
-}

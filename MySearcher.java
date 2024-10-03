@@ -796,7 +796,7 @@ public class MySearcher {
           // fall through
           case 22: break;
           case 5:
-            { System.out.printf("integer: %s", yytext());
+            { System.out.printf("integer: %s\n", yytext());
             }
           // fall through
           case 23: break;

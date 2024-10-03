@@ -71,10 +71,6 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 {LineTerminator} { /* ignore */ 
 }
-
-{Integer} {
-    System.out.printf("integer: %s", yytext());
-}
 {NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
     System.out.printf("operator: %s\n", yytext());
 }
@@ -83,15 +79,7 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
     System.out.printf("integer: %s\n", yytext());
 }
 
-{Letters} {
-    // ตรวจสอบว่ามีเครื่องหมาย ! ในสตริงหรือไม่
-    // if (yytext().contains("!")) {
-    //     System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
-    //     throw new RuntimeException("Program terminated due to exclamation mark in string.");
-    // } else {
-        System.out.println("string: " + yytext());
-    // }
-}
+
 
 // จับข้อความที่ไม่ถูกครอบด้วยเครื่องหมายคำพูด และหยุดการทำงานทันที
 [a-zA-Z_][a-zA-Z0-9_]* {
@@ -103,6 +91,15 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
     }
 }
 
+{Letters} {
+    // ตรวจสอบว่ามีเครื่องหมาย ! ในสตริงหรือไม่
+    // if (yytext().contains("!")) {
+    //     System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
+    //     throw new RuntimeException("Program terminated due to exclamation mark in string.");
+    // } else {
+        System.out.println("string: " + yytext());
+    // }
+}
 
 
 // ละเว้นอักขระอื่น ๆ

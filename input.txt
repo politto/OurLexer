@@ -9,8 +9,7 @@ id1
 123
 12345
 "Hello world"
-"Hello!"
-"abc"
+"abc
 //Test
 ifif
 ifIF

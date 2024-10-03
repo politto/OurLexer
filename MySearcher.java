@@ -809,9 +809,12 @@ public class MySearcher {
           // fall through
           case 24: break;
           case 7:
-            { // แสดงข้อความข้อผิดพลาดและหยุดการทำงานเมื่อพบข้อความที่ไม่ได้อยู่ในเครื่องหมายคำพูด
-    System.out.println("Error: String is not enclosed in double quotes: " + yytext());
-    throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+            { try {
+        System.out.println("Error: String is not enclosed in double quotes: " + yytext());
+        throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+    } catch (RuntimeException e) {
+        System.err.println(e.getMessage());
+    }
             }
           // fall through
           case 25: break;

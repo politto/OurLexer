@@ -93,11 +93,14 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
     // }
 }
 
-// ตรวจสอบกรณีข้อความที่ไม่มีอยู่ในเครื่องหมายคำพูด
-[a-zA-Z_][a-zA-Z0-9_]* { 
-    // แสดงข้อความข้อผิดพลาดและหยุดการทำงานเมื่อพบข้อความที่ไม่ได้อยู่ในเครื่องหมายคำพูด
-    System.out.println("Error: String is not enclosed in double quotes: " + yytext());
-    throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+// จับข้อความที่ไม่ถูกครอบด้วยเครื่องหมายคำพูด และหยุดการทำงานทันที
+[a-zA-Z_][a-zA-Z0-9_]* {
+    try {
+        System.out.println("Error: String is not enclosed in double quotes: " + yytext());
+        throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+    } catch (RuntimeException e) {
+        System.err.println(e.getMessage());
+    }
 }
 
 

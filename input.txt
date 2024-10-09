@@ -1,9 +1,18 @@
-<<<<<<< HEAD
+A+B
+-
+*
+if
+then
+id1
+id2
+id1
+123
+12345
+H"
 "hi"
 "as
-a"
-
-=======
-"Hello world"
-"abc
->>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
+"yo"
+"yaha"
+//Test
+ifif
+ifIF

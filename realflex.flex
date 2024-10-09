@@ -1,32 +1,59 @@
-import java.util.*;
+import java.util.Stack;
+
 %%
 
-
-%class MySearcher
+%class ParenthesisChecker
 %standalone
 %line
 %column
-/*Macro def here options too*/
-Numbers = \d+\.?\d*
-Letters = [a-zA-Z]
-Identifier = id+\d*
+%unicode
+%public
 
 %{
-    Set<String> IdentifierSet = new HashSet<>();
+    Stack<Character> parenthesesStack = new Stack<>();  // Stack สำหรับเก็บวงเล็บที่เปิด
 %}
 
+/* Macros */
+OPEN_PAREN = \(
+CLOSE_PAREN = \)
+SEMICOLON = ;
 
 %%
 
-"(" { System.out.println("Left Parenthesis: ("); }
-")" { System.out.println("Right Parenthesis: )"); }
-";" { System.out.println("Semicolon: ;"); }
-
-
-{Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s", yytext());
-    else System.out.printf("identifier \"%s\" already in symbol table", yytext());
-    
-    IdentifierSet.add(yytext());
+// (
+{OPEN_PAREN} {
+    parenthesesStack.push('(');  // Add an opening parenthesis to stack
+    System.out.println("\nFound opening parenthesis '(' at line: " + yyline + ", column: " + yycolumn);
 }
-    
+
+// )
+{CLOSE_PAREN} {
+    if (!parenthesesStack.isEmpty() && parenthesesStack.peek() == '(') {
+        parenthesesStack.pop();  // Remove opening parentheses from the stack when closing parentheses are found
+        System.out.println("Found closing parenthesis ')' at line: " + yyline + ", column: " + yycolumn);
+    } else {
+        System.out.println("Error: Unmatched closing parenthesis ')' at line: " + yyline + ", column: " + yycolumn);
+    }
+}
+
+// ;
+{SEMICOLON} {
+    System.out.println("Found semicolon ';' at line: " + yyline + ", column: " + yycolumn);
+}
+
+// Finish reading the line
+\n {
+    if (!parenthesesStack.isEmpty()) {
+        System.out.println("\nError: Unmatched opening parenthesis '(' at end of line " + yyline);
+    }
+}
+
+// Check end of file  '\n'
+<<EOF>> {
+    if (!parenthesesStack.isEmpty()) {
+        System.out.println("\nError: Unmatched opening parenthesis '(' before EOF");
+    } else {
+        System.out.println("\nNo unmatched parentheses found. Parsing completed.");
+    }
+    System.exit(0);  // Stops work at the end of file processing
+}

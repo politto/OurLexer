@@ -10,7 +10,7 @@ import java.util.Stack;
 %public
 
 %{
-    Stack<Character> parenthesesStack = new Stack<>();  // Stack สำหรับเก็บวงเล็บที่เปิด
+    Stack<Character> parenthesesStack = new Stack<>();  // Stack to store open parentheses
 %}
 
 /* Macros */

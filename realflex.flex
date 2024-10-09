@@ -2,7 +2,7 @@ import java.util.Stack;
 
 %%
 
-%class ParenthesisChecker
+%class MySearcher
 %standalone
 %line
 %column

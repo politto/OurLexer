@@ -5,7 +5,6 @@
 import java.util.*;
 import java.io.*;
 
-
 @SuppressWarnings("fallthrough")
 public class MySearcher {
 
@@ -62,8 +61,14 @@ public class MySearcher {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
+<<<<<<< HEAD
     "\12\0\4\1\24\0\1\2\71\0\1\3\21\0\1\4"+
     "\26\0\1\1\u01a2\0\2\1\326\0\u0100\1";
+=======
+    "\12\0\4\1\24\0\1\2\15\0\12\3\7\0\32\4"+
+    "\1\0\1\5\2\0\1\4\1\0\15\4\1\6\14\4"+
+    "\12\0\1\1\u0196\0\2\7\12\0\2\1\326\0\u0100\1";
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -90,10 +95,17 @@ public class MySearcher {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
+<<<<<<< HEAD
     "\1\0\1\1\1\2\1\1\1\0\1\3\3\0";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[9];
+=======
+    "\1\0\1\1\1\2\1\1\1\3\1\0\2\4";
+
+  private static int [] zzUnpackAction() {
+    int [] result = new int[8];
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -118,11 +130,18 @@ public class MySearcher {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
+<<<<<<< HEAD
     "\0\0\0\5\0\5\0\12\0\12\0\5\0\17\0\24"+
     "\0\31";
 
   private static int [] zzUnpackRowMap() {
     int [] result = new int[9];
+=======
+    "\0\0\0\10\0\10\0\20\0\30\0\20\0\10\0\20";
+
+  private static int [] zzUnpackRowMap() {
+    int [] result = new int[8];
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -145,12 +164,21 @@ public class MySearcher {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
+<<<<<<< HEAD
     "\1\2\1\3\1\4\2\2\5\0\2\5\1\6\1\7"+
     "\4\0\1\10\1\0\1\5\1\0\1\5\1\11\3\5"+
     "\1\6\1\7\1\5";
 
   private static int [] zzUnpacktrans() {
     int [] result = new int[30];
+=======
+    "\1\2\1\3\1\4\1\2\1\5\1\2\1\5\1\4"+
+    "\10\0\2\6\1\7\2\6\2\0\1\10\3\0\2\5"+
+    "\1\0\1\5\1\0";
+
+  private static int [] zzUnpacktrans() {
+    int [] result = new int[32];
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -193,10 +221,17 @@ public class MySearcher {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
+<<<<<<< HEAD
     "\1\0\2\11\1\1\1\0\1\11\3\0";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[9];
+=======
+    "\1\0\2\11\2\1\1\0\1\11\1\1";
+
+  private static int [] zzUnpackAttribute() {
+    int [] result = new int[8];
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -685,6 +720,7 @@ public class MySearcher {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
+<<<<<<< HEAD
             { System.out.println("Error");
     System.exit(1);
             }
@@ -697,9 +733,32 @@ public class MySearcher {
           case 5: break;
           case 3:
             { System.out.println("string:" + yytext()); // If matched, print the valid string
+=======
+            { /* Ignore any other characters */
+            }
+          // fall through
+          case 5: break;
+          case 2:
+            { System.out.print(yytext());
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)
             }
           // fall through
           case 6: break;
+          case 3:
+            { try {
+        System.out.println("Error: String is not enclosed in double quotes: " + yytext());
+        throw new RuntimeException("Program terminated due to string not enclosed in double quotes.");
+    } catch (RuntimeException e) {
+        System.err.println(e.getMessage());
+    }
+            }
+          // fall through
+          case 7: break;
+          case 4:
+            { System.out.println("Valid string: " + yytext());
+            }
+          // fall through
+          case 8: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

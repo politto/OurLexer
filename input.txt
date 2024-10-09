@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 "hi"
 "as
 a"
 
+=======
+"Hello world"
+"abc
+>>>>>>> parent of ff5ea8e (หัวผมหมุ่นแล้วครับ)

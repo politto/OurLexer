@@ -837,7 +837,7 @@ public class MySearcher {
           // fall through
           case 29: break;
           case 10:
-            { System.out.printf("Error: Unmatched double quote is incomplete");
+            { System.out.printf("Error: Invalid identifier followed by double quote: %s\n", yytext());
         throw new RuntimeException("Invalid identifier followed by quote");
             }
           // fall through

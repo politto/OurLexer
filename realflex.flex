@@ -6,7 +6,7 @@ import java.util.*;
 %standalone
 %line
 %column
-/*Macro def here options too*/
+/*Macro def here options too */
 Numbers = \d+\.?\d*
 Letters = \"[^\"\\\n]*\"
 Identifier = [A-Za-z][A-Za-z0-9]*
@@ -22,12 +22,8 @@ AND = "&&"
 OR = "\|\|"
 Others = [^A-Za-z0-9+\-\*/%\" ]+
 
-
-
-
 LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
-
 
 /* comments */
 Comment = {SingleLineComment} | {MultiLineComment} | {DocumentationComment} | [ ]
@@ -36,15 +32,14 @@ MultiLineComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 
-
 %{
     Set<String> IdentifierSet = new HashSet<>();
 %}
 %unicode
 %public
+%state STRING_MODE
 
 %{
-    boolean isQuoteOpened = false;  // สถานะการเปิดเครื่องหมายคำพูด
     StringBuilder currentString = new StringBuilder();  // เก็บข้อความในเครื่องหมายคำพูด
 %}
 
@@ -52,85 +47,75 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 DOUBLE_QUOTE = \"|\u201C|\u201D
 
 %%
-"if"        { System.out.printf("keyword: if"); }
-"then"      { System.out.printf("keyword: then"); }
-"else"      { System.out.printf("keyword: else"); }
-"endif"     { System.out.printf("keyword: endif"); }
-"while"     { System.out.printf("keyword: while"); }
-"do"        { System.out.printf("keyword: do"); }
-"endwhile"  { System.out.printf("keyword: endwhile"); }
-"print"     { System.out.printf("keyword: print"); }
-"newline"   { System.out.printf("keyword: newline"); }
-"read"      { System.out.printf("keyword: read"); }
 
+<YYINITIAL> {
 
-{Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
-    else System.out.printf("identifier \"%s\" already in symbol table\n", yytext());
-    
-    IdentifierSet.add(yytext());
-}
-    
-{Comment} { /* ignore */ 
-}
+    "if"        { System.out.printf("keyword: if\n"); }
+    "then"      { System.out.printf("keyword: then\n"); }
+    "else"      { System.out.printf("keyword: else\n"); }
+    "endif"     { System.out.printf("keyword: endif\n"); }
+    "while"     { System.out.printf("keyword: while\n"); }
+    "do"        { System.out.printf("keyword: do\n"); }
+    "endwhile"  { System.out.printf("keyword: endwhile\n"); }
+    "print"     { System.out.printf("keyword: print\n"); }
+    "newline"   { System.out.printf("keyword: newline\n"); }
+    "read"      { System.out.printf("keyword: read\n"); }
 
-{LineTerminator} { /* ignore */ 
-}
-{NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
-    System.out.printf("operator: %s\n", yytext());
-}
+    {Identifier} {
+        if (!IdentifierSet.contains(yytext())) {
+            System.out.printf("new identifier: %s\n", yytext());
+        } else {
+            System.out.printf("identifier \"%s\" already in symbol table\n", yytext());
+        }
+        IdentifierSet.add(yytext());
+    }
 
-{Integer} {
-    System.out.printf("integer: %s\n", yytext());
-}
+    {Comment} { /* ignore */ }
 
-// จับการเปิดและปิดเครื่องหมายคำพูดคู่
-{DOUBLE_QUOTE} {
-    isQuoteOpened = !isQuoteOpened;  // สลับสถานะเปิด-ปิด
-    currentString.append(yytext());  // เก็บเครื่องหมายเปิดหรือปิดใน currentString
-}
+    {LineTerminator} { /* ignore */ }
 
+    {NotEqual} | {Operator} | {Equal} | {GreaterThanOrEqual} | {LessThanOrEqual} | {Increment} | {Decrement} | {AND} | {OR} {
+        System.out.printf("operator: %s\n", yytext());
+    }
 
+    {Integer} {
+        System.out.printf("integer: %s\n", yytext());
+    }
 
-// จับข้อความภายในเครื่องหมายคำพูด
-[^\"\n]+ {
-    if (isQuoteOpened) {
-        currentString.append(yytext());  // เก็บข้อความเมื่ออยู่ในเครื่องหมายคำพูด
+    // เมื่อพบเครื่องหมายเปิด DOUBLE_QUOTE ให้เปลี่ยนสถานะเป็น STRING_MODE
+    {DOUBLE_QUOTE} {
+        currentString.setLength(0);  // รีเซ็ตตัวแปรเก็บข้อความ
+        yybegin(STRING_MODE);  // เปลี่ยนไปที่ STRING_MODE
+    }
+
+    // กรณีเจอ DOUBLE_QUOTE ตามหลัง Identifier ให้แสดง error
+    {Identifier}{DOUBLE_QUOTE} {
+        System.out.printf("Error: Unmatched double quote is incomplete");
+        throw new RuntimeException("Invalid identifier followed by quote");
     }
 }
 
-// จบการอ่านบรรทัดและตรวจสอบเครื่องหมายคำพูดในบรรทัดนั้น
-\n {
-    if (isQuoteOpened) {  // ถ้ามีการเปิดเครื่องหมายคำพูดแต่ไม่มีการปิด
+// เมื่ออยู่ใน STRING_MODE
+<STRING_MODE> {
+
+    {DOUBLE_QUOTE} {
+        yybegin(YYINITIAL);  // กลับสู่สถานะปกติ
+        System.out.printf("Valid string: \"%s\"\n", currentString.toString());  // แสดงผล string ที่ถูกจับ
+    }
+
+    [^\"\n]+ {
+        currentString.append(yytext());  // เก็บข้อความภายในเครื่องหมายคำพูด
+    }
+
+    \n {
+        // ถ้าพบบรรทัดใหม่ขณะที่ยังอยู่ในโหมด string ถือว่า string ไม่สมบูรณ์
         System.out.println("Error: Unmatched double quote is incomplete");
-    } else if (currentString.length() > 0) {  // ถ้ามีเครื่องหมายเปิดและปิดครบ
-        System.out.println("Valid string: " + currentString.toString());
-    }
-
-    // รีเซ็ตตัวแปร
-    currentString.setLength(0);
-    isQuoteOpened = false;
-}
-
-// ตรวจสอบตอนสิ้นสุดไฟล์ (EOF) หากไม่มี '\n'
-<<EOF>> {
-    if (isQuoteOpened) {  // ถ้าเครื่องหมายเปิดอยู่แต่ไม่มีการปิดเมื่อถึงจุดสิ้นสุดไฟล์
-        System.out.println("Error: Unmatched double quote is incomplete");
-    } else if (currentString.length() > 0) {  // ถ้ามีการเปิดและปิดครบถ้วน
-        System.out.println("Valid string: " + currentString.toString());
+        throw new RuntimeException("Unmatched double quote is incomplete");  // หยุดการทำงาน
     }
 }
-
-{Letters} {
-    // ตรวจสอบว่ามีเครื่องหมาย ! ในสตริงหรือไม่
-    // if (yytext().contains("!")) {
-    //     System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
-    //     throw new RuntimeException("Program terminated due to exclamation mark in string.");
-    // } else {
-        System.out.println("string: " + yytext());
-    // }
-}
-
 
 // ละเว้นอักขระอื่น ๆ
-{Others} { throw new RuntimeException("Program terminated due to invalid character."); }
+{Others} {
+    System.out.printf("Error: Invalid character '%s'\n", yytext());
+    throw new RuntimeException("Program terminated due to invalid character.");
+}

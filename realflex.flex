@@ -14,13 +14,13 @@ Integer = \d+
 Operator = [+\-*/=<>%]
 NotEqual = "!="
 Equal = ==
-GreaterThanOrEqual = >=
+GreaterThanOrEqual = ">="
 LessThanOrEqual = <=
 Increment = \+\+
 Decrement = \-\-
 AND = "&&"
 OR = "\|\|"
-Others = [^A-Za-z0-9+\-\*/%\" ]+
+Others = [^A-Za-z0-9+\-\*\"/% ]+
 
 
 
@@ -65,9 +65,9 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 
 {Identifier} {
-    if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
+    if (isQuoteOpened) currentString.append(yytext());
+    else if (!IdentifierSet.contains(yytext())) System.out.printf("new identifier: %s\n", yytext());
     else System.out.printf("identifier \"%s\" already in symbol table\n", yytext());
-    
     IdentifierSet.add(yytext());
 }
     
@@ -86,51 +86,20 @@ DOUBLE_QUOTE = \"|\u201C|\u201D
 
 // จับการเปิดและปิดเครื่องหมายคำพูดคู่
 {DOUBLE_QUOTE} {
-    isQuoteOpened = !isQuoteOpened;  // สลับสถานะเปิด-ปิด
-    currentString.append(yytext());  // เก็บเครื่องหมายเปิดหรือปิดใน currentString
-}
-
-
-
-// จับข้อความภายในเครื่องหมายคำพูด
-[^\"\n]+ {
-    if (isQuoteOpened) {
-        currentString.append(yytext());  // เก็บข้อความเมื่ออยู่ในเครื่องหมายคำพูด
+    // System.out.printf("[DEBUG] found quote! isQuoteOpened %s, currentString >>%s<< length %d, yy.text is %s\n", isQuoteOpened, currentString, currentString.length(), yytext());
+    if (isQuoteOpened && currentString.length() == 0) {
+        throw new RuntimeException("Program terminated due to unmatched double quote.");
     }
-}
-
-// จบการอ่านบรรทัดและตรวจสอบเครื่องหมายคำพูดในบรรทัดนั้น
-\n {
-    if (isQuoteOpened) {  // ถ้ามีการเปิดเครื่องหมายคำพูดแต่ไม่มีการปิด
-        System.out.println("Error: Unmatched double quote is incomplete");
-    } else if (currentString.length() > 0) {  // ถ้ามีเครื่องหมายเปิดและปิดครบ
-        System.out.println("Valid string: " + currentString.toString());
+    else if (isQuoteOpened && currentString.length() > 0) {
+        isQuoteOpened = !isQuoteOpened;
+        System.out.printf("string: \"%s\"\n", currentString);
+        currentString.setLength(0);
     }
-
-    // รีเซ็ตตัวแปร
-    currentString.setLength(0);
-    isQuoteOpened = false;
-}
-
-// ตรวจสอบตอนสิ้นสุดไฟล์ (EOF) หากไม่มี '\n'
-<<EOF>> {
-    if (isQuoteOpened) {  // ถ้าเครื่องหมายเปิดอยู่แต่ไม่มีการปิดเมื่อถึงจุดสิ้นสุดไฟล์
-        System.out.println("Error: Unmatched double quote is incomplete");
-    } else if (currentString.length() > 0) {  // ถ้ามีการเปิดและปิดครบถ้วน
-        System.out.println("Valid string: " + currentString.toString());
+    else {
+        isQuoteOpened = !isQuoteOpened;  // สลับสถานะเปิด-ปิด
     }
-}
-
-{Letters} {
-    // ตรวจสอบว่ามีเครื่องหมาย ! ในสตริงหรือไม่
-    // if (yytext().contains("!")) {
-    //     System.out.println("Error: Exclamation mark ('!') found in string: " + yytext());
-    //     throw new RuntimeException("Program terminated due to exclamation mark in string.");
-    // } else {
-        System.out.println("string: " + yytext());
-    // }
 }
 
 
 // ละเว้นอักขระอื่น ๆ
-{Others} { throw new RuntimeException("Program terminated due to invalid character."); }
+{Others} { throw new RuntimeException("Program terminated due to invalid character or misused string quotes."); }

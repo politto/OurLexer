@@ -775,7 +775,7 @@ public class MySearcher {
         throw new RuntimeException("Program terminated due to unmatched double quote.");
     }
     else if (isQuoteOpened && currentString.length() > 0) {
-        isQuoteOpened = !isQuoteOpened;
+        isQuoteOpened = !isQuoteOpened
         System.out.printf("string: \"%s\"\n", currentString);
         currentString.setLength(0);
     }

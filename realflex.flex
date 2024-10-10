@@ -35,6 +35,14 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 %{
     Set<String> IdentifierSet = new HashSet<>();
 %}
+
+
+%%
+
+"(" { System.out.println("Left Parenthesis: ("); }
+")" { System.out.println("Right Parenthesis: )"); }
+";" { System.out.println("Semicolon: ;"); }
+
 %unicode
 %public
 %state STRING_MODE

@@ -16,3 +16,8 @@ yo"
 //Test
 ifif
 ifIF
+"Hello world"
+/*comment*/
+(
+)
+;

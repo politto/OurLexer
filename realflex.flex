@@ -34,27 +34,26 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 
 %{
     Set<String> IdentifierSet = new HashSet<>();
+    StringBuilder currentString = new StringBuilder();  // เก็บข้อความในเครื่องหมายคำพูด
 %}
 
+
+
+
+
+
+%unicode
+%public
+%state STRING_MODE
+
+/* Macros */
+DOUBLE_QUOTE = \"|\u201C|\u201D
 
 %%
 
 "(" { System.out.println("Left Parenthesis: ("); }
 ")" { System.out.println("Right Parenthesis: )"); }
 ";" { System.out.println("Semicolon: ;"); }
-
-%unicode
-%public
-%state STRING_MODE
-
-%{
-    StringBuilder currentString = new StringBuilder();  // เก็บข้อความในเครื่องหมายคำพูด
-%}
-
-/* Macros */
-DOUBLE_QUOTE = \"|\u201C|\u201D
-
-%%
 
 <YYINITIAL> {
 

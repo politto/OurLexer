@@ -20,7 +20,7 @@ Increment = \+\+
 Decrement = \-\-
 AND = "&&"
 OR = "\|\|"
-Others = [^A-Za-z0-9+\-\*/%\" ]+
+Others = [^A-Za-z0-9+\-\*/%\"\(\)\; ]+
 
 LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]

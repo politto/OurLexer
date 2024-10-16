@@ -1,0 +1,17 @@
+"keywords"
+if
+then
+else
+endif
+while
+do
+endwhile
+print
+newline
+read
+"not keywords"
+ifif
+ifIF
+for
+true
+ifthen
